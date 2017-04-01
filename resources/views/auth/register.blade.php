@@ -25,10 +25,13 @@
                         </div>
 
                         <div class="form-group{{ $errors->has('gender') ? ' has-error' : '' }}">
-                            <label for="name" class="col-md-4 control-label">Name</label>
+                            <label for="name" class="col-md-4 control-label">Gender</label>
 
                             <div class="col-md-6">
-                                <input id="gender" type="text" class="form-control" name="gender" value="{{ old('gender') }}" required autofocus>
+                                <select name="gender" class="col-md-4 control-label">
+                                    <option value="male">Male</option>
+                                    <option value="female">Female</option>
+                                </select>
 
                                 @if ($errors->has('gender'))
                                     <span class="help-block">
