@@ -11,7 +11,7 @@
                     Wellcome To You Profile..!
                     <br>
                     <img src="{{ asset('img/'. Auth::user()->picture) }}" width="80px" height="80px" /><br>
-                    <a href="#">Change Image</a>
+                    <a href="{{ route('change_photo_path') }}">Change Image</a>
                 </div>
             </div>
         </div>
