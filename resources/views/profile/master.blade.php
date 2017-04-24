@@ -47,6 +47,12 @@
                             <li>
                                 <a href="{{ route('profile_path', Auth::user()->slug ) }}">Profile</a>
                             </li>
+                            <li>
+                                <a href="{{ route('find_friend_path') }}">Find Friends</a>
+                            </li>
+                            <li>
+                                <a href="{{ route('requests_path') }}">My Requests  ( {{ App\Friendship::where('status', '=', Null)->where('user_requested', Auth::user()->id)->count() }} )</a>
+                            </li>
                         @endif
                     </ul>
 
@@ -68,6 +74,11 @@
                                 </a>
 
                                 <ul class="dropdown-menu" role="menu">
+                                <li>
+                                        <a href="{{ route('edit_profile_path') }}">
+                                            Edit Profile
+                                        </a>
+                                    </li>
                                     <li>
                                         <a href="{{ route('logout') }}"
                                             onclick="event.preventDefault();

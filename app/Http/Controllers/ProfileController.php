@@ -3,13 +3,18 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
+use App\User;
+use App\Profile;
 
 class ProfileController extends Controller
 {
     public function index($slug)
     {
-        return view('profile.index');
+        return view('profile.index')->with('data', auth()->user()->profiles);
     }
+    
     public function changePhoto ()
     {
 
@@ -29,6 +34,30 @@ class ProfileController extends Controller
 
         //dd($request->all());
 
-        return view('profile.index');
+        $_user_id = Auth::user()->id;
+
+        DB::table('users')->where('id', $_user_id)->update(['picture' => $_filename ]);
+
+        //return view('profile.index');
+
+       return redirect()->back();
     }
+
+    public function EditProfile()
+    {
+
+        return view('profile.editProfile')->with('data', auth()->user()->profiles);
+    }
+
+    public function UpdateProfile(Profile $profile, Request $request)
+    {
+        
+        $user_id = auth()->user()->id;
+
+        DB::table('profiles')->where('user_id', $user_id)->update($request->except('_token'));
+        
+       // dd($request->all());
+
+        return redirect()->back();
+    }    
 }

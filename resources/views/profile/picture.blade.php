@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('profile.master')
 
 @section('content')
 <div class="container">
@@ -10,7 +10,7 @@
                 <div class="panel-body">
                     Wellcome To You Profile..!
                     <br>
-                    <img src="{{ asset('img/'. Auth::user()->picture) }}" width="100px" height="100px" /><br>
+                    <img src="{{ asset('img/'. Auth::user()->picture) }}" width="100px" height="100px" class="img-circle" /><br>
 
                     <form action="{{ route('photo_path') }}" method="POST" enctype="multipart/form-data" files="true" >
 

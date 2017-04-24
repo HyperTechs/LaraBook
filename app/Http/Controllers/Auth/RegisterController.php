@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\User;
+use App\Profile;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
@@ -69,7 +70,7 @@ class RegisterController extends Controller
             $pic_path = 'girl.png';
         }
 
-        return User::create([
+        $user = User::create([
             'name' => $data['name'],
             'picture' => $pic_path,
             'gender' => $data['gender'],
@@ -77,5 +78,9 @@ class RegisterController extends Controller
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
         ]);
+
+        Profile::create(['user_id' => $user->id]);
+
+        return $user;
     }
 }
